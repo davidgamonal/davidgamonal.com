@@ -416,6 +416,15 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
   .hero .go span[aria-hidden]{display:inline-block;transform:rotate(90deg)}
   .bar{background:rgba(20,21,24,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 }
+/* entradas al hacer scroll (móvil) */
+.flow .rv{opacity:0;translate:var(--dx,-48px) 26px;rotate:var(--rz,-2deg);filter:blur(8px);transition:opacity .75s var(--ease),translate .95s var(--ease),rotate .95s var(--ease),filter .75s var(--ease);transition-delay:var(--d,0s)}
+.flow .rv.in{opacity:1;translate:0 0;rotate:0deg;filter:blur(0)}
+.flow .rvc{opacity:0;translate:0 110%;rotate:var(--rc,12deg);transition:opacity .5s var(--ease),translate .8s var(--ease),rotate .8s var(--ease);transition-delay:var(--d,0s)}
+.flow .rvc.in{opacity:1;translate:0 0;rotate:0deg}
+.flow .slide::before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease);z-index:2}
+.flow .slide.hero::before{display:none}
+.flow .slide.lit::before{transform:scaleX(1)}
+.flow .ghost{transition:none}
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -771,7 +780,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
       items.slots=Math.max(1,slot-1); return items;
     });
   }
-  window.__rebuildSeq=function(){ splitTitles(); buildSeqs(); seqs.forEach(function(l){l.__clean=false;l.__hidden=false}); if(typeof render==='function') render(); };
+  window.__rebuildSeq=function(){ splitTitles(); buildSeqs(); seqs.forEach(function(l){l.__clean=false;l.__hidden=false}); if(typeof render==='function') render(); if(mob&&document.documentElement.classList.contains('flow')) setupReveal(); };
   function ease(t){ return 1-Math.pow(2,-10*t); }
   var rv=slides.map(function(_,i){return i===0?1:0}), vel=0;
   var flowMQ=window.matchMedia?matchMedia('(max-width:820px), (max-height:520px) and (pointer:coarse)'):{matches:false}, mob=flowMQ.matches;
@@ -1287,6 +1296,40 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     slides.forEach(function(s){ s.removeAttribute('inert'); s.removeAttribute('aria-hidden'); var inn=s.querySelector('.slide-inner'); if(inn) inn.style.transform=''; if(s.classList.contains('journey')) s.classList.add('seen'); });
     ghosts.forEach(function(g){ if(g) g.style.translate=''; });
     track.style.transform=''; nh.classList.remove('on');
+    setupReveal();
+  }
+  var rvIO=null, slIO=null;
+  function setupReveal(){
+    var root=document.documentElement;
+    if(calmMQ.matches||!('IntersectionObserver' in window)) return;
+    root.classList.add('flow');
+    if(rvIO) rvIO.disconnect(); if(slIO) slIO.disconnect();
+    var els=[];
+    seqs.forEach(function(list,i){ if(i===0) return; var side=i%2?-1:1;
+      list.forEach(function(it){ var el=it.el; el.classList.remove('in');
+        if(it.ch){ el.classList.add('rvc'); el.style.setProperty('--rc',(side*12)+'deg'); el.__sub=it.sub; }
+        else { el.classList.add('rv'); el.style.setProperty('--dx',(side*48)+'px'); el.style.setProperty('--rz',(side*-2)+'deg'); el.__sub=0; }
+        els.push(el); }); });
+    rvIO=new IntersectionObserver(function(entries){
+      var n=0;
+      entries.forEach(function(en){ var el=en.target;
+        if(en.isIntersecting){ if(el.classList.contains('in')) return;
+          el.style.setProperty('--d',(el.classList.contains('rvc')?Math.min(.5,el.__sub*.03):Math.min(.6,n*.08)).toFixed(2)+'s');
+          if(!el.classList.contains('rvc')) n++;
+          el.classList.add('in'); }
+        else if(en.boundingClientRect.top>window.innerHeight){ el.classList.remove('in'); }
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0});
+    els.forEach(function(el){ rvIO.observe(el); });
+    slIO=new IntersectionObserver(function(entries){ entries.forEach(function(en){
+      if(en.isIntersecting) en.target.classList.add('lit'); else if(en.boundingClientRect.top>window.innerHeight) en.target.classList.remove('lit'); }); },{threshold:0.02});
+    slides.forEach(function(s){ slIO.observe(s); });
+  }
+  function teardownReveal(){
+    document.documentElement.classList.remove('flow');
+    if(rvIO){ rvIO.disconnect(); rvIO=null; } if(slIO){ slIO.disconnect(); slIO=null; }
+    [].forEach.call(document.querySelectorAll('.rv,.rvc'),function(el){ el.classList.remove('rv','rvc','in'); el.style.removeProperty('--d'); el.style.removeProperty('--dx'); el.style.removeProperty('--rz'); el.style.removeProperty('--rc'); });
+    slides.forEach(function(s){ s.classList.remove('lit'); });
   }
   function flowScroll(){
     if(!mob) return;
@@ -1296,6 +1339,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     var max=document.documentElement.scrollHeight-window.innerHeight;
     document.getElementById('progress').style.width=(max>0?Math.min(1,window.scrollY/max):0)*100+'%';
     if(window.__hidePeek) window.__hidePeek();
+    if(!calmMQ.matches) slides.forEach(function(s,i){ var g=ghosts[i]; if(!g) return; var t=s.getBoundingClientRect().top; if(t<window.innerHeight&&t+s.offsetHeight>0) g.style.translate='0 '+(-t*0.22).toFixed(1)+'px'; });
   }
   window.addEventListener('scroll',flowScroll,{passive:true});
   if(mob) enterFlow();
@@ -1303,7 +1347,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
   var lastW=window.innerWidth;
   window.addEventListener('resize',function(){
     var m=flowMQ.matches;
-    if(m!==mob){ var keep=cur; mob=m; if(mob){ enterFlow(); } else { window.scrollTo(0,0); rv=rv.map(function(_,j){return j===keep?1:0}); seqs.forEach(function(l){l.__clean=false;}); } go(keep,true); flowScroll(); return; }
+    if(m!==mob){ var keep=cur; mob=m; if(mob){ enterFlow(); } else { teardownReveal(); window.scrollTo(0,0); rv=rv.map(function(_,j){return j===keep?1:0}); seqs.forEach(function(l){l.__clean=false;}); } go(keep,true); flowScroll(); return; }
     if(!mob&&window.innerWidth!==lastW) go(cur,true);
     lastW=window.innerWidth;
   });
