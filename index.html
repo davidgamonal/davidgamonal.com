@@ -421,13 +421,14 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
   .pp,.index,.extra,.lightbox{overscroll-behavior:contain}
   .oth-toggle{cursor:pointer;pointer-events:auto}
   .oth-toggle .plus{display:block}
-  .others.open .oth-toggle .plus::after{transform:rotate(0)}
-  .others.open .oth-toggle .plus::before,.others.open .oth-toggle .plus::after{background:var(--red)}
+  .clp.open .oth-toggle .plus::after{transform:rotate(0)}
+  .clp.open .oth-toggle .plus::before,.clp.open .oth-toggle .plus::after{background:var(--red)}
   .oth-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
-  .others.open .oth-wrap{grid-template-rows:1fr}
+  .clp.open .oth-wrap{grid-template-rows:1fr}
   .oth-in{overflow:hidden;min-height:0}
-  .oth-wrap ul{border-top:0!important;opacity:0;transform:translateY(-8px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
-  .others.open .oth-wrap ul{opacity:1;transform:none;transition-delay:.08s}
+  .oth-wrap ul.langs,.oth-wrap #othersList{border-top:0!important}
+  .oth-wrap ul{opacity:0;transform:translateY(-8px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+  .clp.open .oth-wrap ul{opacity:1;transform:none;transition-delay:.08s}
   .hero .go span[aria-hidden]{display:inline-block;transform:rotate(90deg)}
   .bar{background:rgba(20,21,24,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 }
@@ -557,7 +558,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
         </div>
         <div class="work-grid">
           <div class="projects" id="projects"></div>
-          <aside class="others">
+          <aside class="others clp">
             <h3 class="jhead"><button type="button" class="oth-toggle" id="othToggle" aria-expanded="false" aria-controls="othWrap"><span data-i18n="lOthers">Otros proyectos</span><span class="plus" aria-hidden="true"></span></button></h3>
             <div class="oth-wrap" id="othWrap"><div class="oth-in"><ul id="othersList"></ul></div></div>
             <button class="go" type="button" data-go="4"><span data-i18n="knowMore">¿Quieres saber más?</span> <span aria-hidden="true">→</span></button>
@@ -591,8 +592,9 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
               <li><span class="when">09/2023 – 02/2024</span><span class="h">Erasmus</span><span class="role" data-i18n="e4">LUMSA, Roma</span></li>
             </ol>
           </div>
-          <div>
-            <h3 class="jhead" data-i18n="lLang">Idiomas</h3>
+          <div class="clp">
+            <h3 class="jhead"><button type="button" class="oth-toggle" aria-expanded="false"><span data-i18n="lLang">Idiomas</span><span class="plus" aria-hidden="true"></span></button></h3>
+            <div class="oth-wrap"><div class="oth-in">
             <ul class="langs">
               <li><span data-i18n="lg1">Español</span><span data-i18n="nat">Nativo</span></li>
               <li><span data-i18n="lg2">Catalán</span><span data-i18n="nat">Nativo</span></li>
@@ -600,6 +602,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
               <li><span data-i18n="lg4">Francés</span><span>B2</span></li>
               <li><span data-i18n="lg5">Italiano</span><span data-i18n="basic">Básico</span></li>
             </ul>
+            </div></div>
           </div>
         </div>
       </div>
@@ -1045,7 +1048,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     }).join('');
   }
   document.getElementById('projects').addEventListener('click',function(e){ var h=e.target.closest('.proj-head'); if(h) ppOpen(+h.dataset.i,h); });
-  document.getElementById('othToggle').addEventListener('click',function(){ if(!mob) return; var a=this.closest('.others'), on=!a.classList.contains('open'); a.classList.toggle('open',on); this.setAttribute('aria-expanded',on?'true':'false'); });
+  [].forEach.call(document.querySelectorAll('.clp .oth-toggle'),function(t){ t.addEventListener('click',function(){ if(!mob) return; var a=this.closest('.clp'), on=!a.classList.contains('open'); a.classList.toggle('open',on); this.setAttribute('aria-expanded',on?'true':'false'); }); });
   document.getElementById('othersList').addEventListener('click',function(e){ var b=e.target.closest('.oth'); if(!b) return; var li=b.parentNode, on=!li.classList.contains('open');
     [].forEach.call(this.children,function(x){x.classList.remove('open');x.querySelector('.oth').setAttribute('aria-expanded','false')}); if(on){li.classList.add('open');b.setAttribute('aria-expanded','true')} });
 
