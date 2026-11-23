@@ -228,6 +228,18 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .others li:not(:has(.yr)) .h{grid-column:1 / -1}
 .others .d{grid-column:1 / -1;font-size:14px;color:var(--mute);margin-top:4px}
 .others .go{margin-top:8px}
+.oth-toggle{display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;font:inherit;color:inherit;text-align:left;padding:2px 0}
+.oth-toggle .plus{position:relative;width:14px;height:14px;flex:none}
+.oth-toggle .plus::before,.oth-toggle .plus::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--mute);transition:transform .4s var(--ease),background .2s}
+.oth-toggle .plus::after{transform:rotate(90deg)}
+.oth-toggle:hover .plus::before,.oth-toggle:hover .plus::after{background:var(--paper)}
+.others.open .oth-toggle .plus::after{transform:rotate(0)}
+.others.open .oth-toggle .plus::before,.others.open .oth-toggle .plus::after{background:var(--red)}
+.oth-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.others.open .oth-wrap{grid-template-rows:1fr}
+.oth-in{overflow:hidden;min-height:0}
+.oth-wrap ul{border-top:0!important;opacity:0;transform:translateY(-8px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.others.open .oth-wrap ul{opacity:1;transform:none;transition-delay:.08s}
 /* proyectos: filas que abren ficha + otros proyectos desplegables */
 .proj-head{padding:clamp(11px,1.7vh,17px) 0!important}
 .proj-head .plus::after{transform:rotate(90deg)!important}
@@ -545,8 +557,8 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
         <div class="work-grid">
           <div class="projects" id="projects"></div>
           <aside class="others">
-            <h3 class="jhead" data-i18n="lOthers">Otros proyectos</h3>
-            <ul id="othersList"></ul>
+            <h3 class="jhead"><button type="button" class="oth-toggle" id="othToggle" aria-expanded="false" aria-controls="othWrap"><span data-i18n="lOthers">Otros proyectos</span><span class="plus" aria-hidden="true"></span></button></h3>
+            <div class="oth-wrap" id="othWrap"><div class="oth-in"><ul id="othersList"></ul></div></div>
             <button class="go" type="button" data-go="4"><span data-i18n="knowMore">¿Quieres saber más?</span> <span aria-hidden="true">→</span></button>
           </aside>
         </div>
@@ -1032,6 +1044,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     }).join('');
   }
   document.getElementById('projects').addEventListener('click',function(e){ var h=e.target.closest('.proj-head'); if(h) ppOpen(+h.dataset.i,h); });
+  document.getElementById('othToggle').addEventListener('click',function(){ var a=this.closest('.others'), on=!a.classList.contains('open'); a.classList.toggle('open',on); this.setAttribute('aria-expanded',on?'true':'false'); });
   document.getElementById('othersList').addEventListener('click',function(e){ var b=e.target.closest('.oth'); if(!b) return; var li=b.parentNode, on=!li.classList.contains('open');
     [].forEach.call(this.children,function(x){x.classList.remove('open');x.querySelector('.oth').setAttribute('aria-expanded','false')}); if(on){li.classList.add('open');b.setAttribute('aria-expanded','true')} });
 
