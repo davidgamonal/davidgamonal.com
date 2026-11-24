@@ -137,6 +137,8 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .drive p{font-size:clamp(16px,1.25vw,19px)}
 .brands h3{color:var(--mute);font-size:14px;font-weight:400;margin-bottom:12px}
 .clp.all .oth-toggle{cursor:pointer;pointer-events:auto}
+.oth-toggle>span:first-child,.oth .h{transition:color .2s}
+@media (hover:hover){.oth-toggle:hover>span:first-child,.oth:hover .h{color:var(--red)}.oth-toggle:hover .plus::before,.oth-toggle:hover .plus::after{background:var(--red)!important}}
 .clp.all .oth-toggle .plus{display:block}
 .clp.all.open .oth-toggle .plus::after{transform:rotate(0)}
 .clp.all.open .oth-toggle .plus::before,.clp.all.open .oth-toggle .plus::after{background:var(--red)}
@@ -267,7 +269,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .oth .yr{grid-column:2;grid-row:1;text-align:right}
 .oth .tg{grid-column:1 / -1;grid-row:2;font-size:12.5px;line-height:1.25;color:var(--mute);font-weight:400}
 @media (max-height:800px) and (min-width:701px){.oth{padding:4px 0;row-gap:0}.oth .h{font-size:14px}.oth .tg{font-size:12px}.others .jhead{margin-bottom:6px}}
-.oth:hover .h{color:#fff}
+
 .oth-d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
 .oth-d>span{overflow:hidden;font-size:14px;color:var(--mute)}
 .others li.open .oth-d{grid-template-rows:1fr}
@@ -574,7 +576,6 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
           <aside class="others clp">
             <h3 class="jhead"><button type="button" class="oth-toggle" id="othToggle" aria-expanded="false" aria-controls="othWrap"><span data-i18n="lOthers">Otros proyectos</span><span class="plus" aria-hidden="true"></span></button></h3>
             <div class="oth-wrap" id="othWrap"><div class="oth-in"><ul id="othersList"></ul></div></div>
-            <button class="go" type="button" data-go="4"><span data-i18n="knowMore">¿Quieres saber más?</span> <span aria-hidden="true">→</span></button>
           </aside>
         </div>
       </div>
@@ -778,7 +779,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
   var SEQ={
     's-hero':['.red-rule','.meta','.name .ln','.go','.try'],
     's-profile':['.portrait','.title','.bio','.brands .jhead','.more-btn'],
-    's-work':['.work-head .title','.work-head .sub','.proj','.others .jhead','.others li','.others .go'],
+    's-work':['.work-head .title','.work-head .sub','.proj','.others .jhead','.others li'],
     's-journey':['.title','.jcols > div:nth-child(1) .jhead','.jcols > div:nth-child(1) li','.jcols > div:nth-child(2) .jhead','.jcols > div:nth-child(2) li','.jcols > div:nth-child(3) .jhead','.jcols > div:nth-child(3) li'],
     's-contact':['h2','.lead','.links a','.foot']
   };
@@ -1033,10 +1034,10 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     {yr:'2024',h:'Expoliva · Fundación del Olivar',t:L('Comunicación de evento','Event communication'),d:L('Enfoque de campaña y claim para un encuentro internacional del sector oleícola.','Campaign approach and claim for an international olive-oil industry event.')},
     {yr:'2024',h:'Fundació Pere Tarrés',t:L('Rebranding','Rebrand'),d:L('Análisis de competencia y enfoque estratégico.','Competitor analysis and strategic approach.')},
     {yr:'',h:'Honda · EntuHonda',t:L('Newsletter','Newsletter'),d:L('Newsletter mensual: varios módulos con una misma voz y un CTA claro por pieza.','Monthly newsletter: several modules, one voice and a clear CTA per piece.')},
-    {yr:'',h:'Atrápalo',t:L('Marketing de destino','Destination marketing'),d:L('Microsites de viaje a Costa Rica y Alentejo, junto a la marca turística de cada destino: promesa, titulares y llamadas a la acción.','Travel microsites for Costa Rica and Alentejo, alongside each destination’s tourism brand: promise, headlines and calls to action.')},
+    {yr:'',h:'Atrápalo',t:L('Marketing de destino','Destination marketing'),d:L('Redacción de microsites de viaje: promesa, titulares y llamadas a la acción.','Travel microsite copywriting: promise, headlines and calls to action.')},
     {yr:'',h:'Facilitea',t:L('Lanzamiento de producto','Product launch'),d:L('Mensajes y guiones para presentar su nueva plataforma de compra financiada de vehículos.','Messaging and scripts to launch its new financed vehicle-purchase platform.')},
     {yr:'',h:'NAI',t:L('Identidad corporativa','Corporate identity'),d:L('Contenidos para la web y los materiales de la nueva identidad de esta plataforma legal.','Web and collateral content for the legal platform’s new identity.')},
-    {yr:'',h:'Viena',t:L('Campañas estacionales','Seasonal campaigns'),d:L('Campañas de verano, Navidad y brunch: conceptualización y adaptación de mensajes.','Summer, Christmas and brunch campaigns: concept and message adaptation.')}
+    {yr:'',h:'Viena',t:L('Campañas estacionales','Seasonal campaigns'),d:L('Apoyo en campañas de verano, Navidad y brunch: conceptualización y adaptación de mensajes.','Support on summer, Christmas and brunch campaigns: concept and message adaptation.')}
   ];
   function tx(o){ return o?o[lang]||o.es:''; }
   function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
