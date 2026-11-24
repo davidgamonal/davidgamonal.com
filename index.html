@@ -165,6 +165,8 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .extra.open .cards .card{opacity:1;transform:none}
 .extra.open .cards .card:nth-child(1){transition-delay:.3s}.extra.open .cards .card:nth-child(2){transition-delay:.4s}.extra.open .cards .card:nth-child(3){transition-delay:.5s}.extra.open .cards .card:nth-child(4){transition-delay:.6s}
 .extra .close{position:fixed}
+.jtop{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+#skills.pop{width:min(980px,calc(100vw - 48px))!important}
 .bring{list-style:none;display:flex;flex-wrap:wrap;gap:6px 0;font-size:clamp(34px,5vw,72px);font-weight:600;letter-spacing:-.04em;line-height:1.05}
 .bring li{display:flex;align-items:center;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .bring li+li::before{content:"";width:clamp(18px,2vw,30px);height:3px;background:var(--red);margin:0 clamp(12px,1.4vw,22px)}
@@ -555,7 +557,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
               <li>Servei Català de Trànsit</li><li>Planeta DeAgostini</li><li>Fanhome</li>
               <li>Altaya</li><li>Grimaldi Lines</li><li>Atrápalo</li>
               <li>Tragsa</li><li>Fundació Pere Tarrés</li><li>Fundación del Olivar</li>
-              <li>AgroBank</li><li>Facilitea</li><li>Fundació “la Caixa”</li>
+              <li>Facilitea</li><li>Fundació “la Caixa”</li><li>EssilorLuxottica</li><li>Broker Dental</li>
             </ul>
             </div></div>
           </div>
@@ -585,7 +587,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     <section class="slide journey" id="s-journey" data-slug="trayectoria" aria-roledescription="slide" aria-label="Trayectoria">
       <span class="ghost" aria-hidden="true">04</span>
       <div class="slide-inner">
-        <h2 class="title" data-i18n="tJourney">Trayectoria</h2>
+        <div class="jtop"><h2 class="title" data-i18n="tJourney">Trayectoria</h2><button class="more-btn" type="button" id="skillsBtn" aria-expanded="false" aria-controls="skills"><span class="plus" aria-hidden="true">+</span><span data-i18n="tSkills">Habilidades</span></button></div>
         <div class="jcols">
           <div>
             <h3 class="jhead" data-i18n="lExp">Experiencia</h3>
@@ -648,6 +650,18 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 </div>
 
 <!-- Y algo más -->
+<div class="extra skills" id="skills" role="dialog" aria-modal="true" aria-label="Habilidades">
+  <button type="button" class="close" data-close="skills" aria-label="Cerrar" data-i18n-aria="close"><svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2 2 14"/></svg></button>
+  <div class="extra-in">
+    <h2 class="title" data-i18n="tSkills">Habilidades</h2>
+    <div class="cards">
+      <div class="card"><span class="h3" data-i18n="s1t">Estrategia y gestión de marca</span><span class="p" data-i18n="s1p">Posicionamiento, identidad y planificación de acciones.</span></div>
+      <div class="card"><span class="h3" data-i18n="s2t">Comunicación y contenidos</span><span class="p" data-i18n="s2p">Mensajes, copywriting y redes sociales.</span></div>
+      <div class="card"><span class="h3" data-i18n="s3t">Análisis de datos</span><span class="p" data-i18n="s3p">Mercado, competencia y métricas para tomar decisiones.</span></div>
+      <div class="card card-last"><span class="h3" data-i18n="s4t">Herramientas</span><span class="p" data-i18n="s4p">IA, Meta Ads, Trello, CapCut, Canva y Microsoft Office, entre otras.</span></div>
+    </div>
+  </div>
+</div>
 <div class="extra" id="extra" role="dialog" aria-modal="true" aria-label="Qué aporto">
   <button type="button" class="close" data-close="extra" aria-label="Cerrar" data-i18n-aria="close"><svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2 2 14"/></svg></button>
   <div class="extra-in">
@@ -708,7 +722,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     es:{skip:'Ir a contacto',index:'Índice',heroSub:'Branding · Marketing · Comunicación — Barcelona',claim:'Estrategia de marca con resolución creativa.',a1:'Estratégico',a2:'Analítico',a3:'Resolutivo',a4:'Creativo',swipe:'Desliza',howBtn:'¿Cómo he hecho esta web?',playQ:'¿Te vas sin jugar?',howT:'Gracias a la IA, de forma autónoma.',play:'Jugar',tryGame:'Y si no, prueba mi juego',gTitle:'Mantén la marca en su rumbo',gSub:'Esquiva lo que frena a una marca. Recoge 10 cosas que la hacen crecer.',gHowD:'Pulsa espacio o haz clic para empezar y subir',gHowT:'Toca la pantalla para empezar y subir',gReached:'Llegaste a',gEnd:'Esta vez no llegaste a la cima.',gEnd2:'Juntos, sí podemos llevar tu marca hasta ahí.',gTalk:'Contacto',gAgain:'Reintentar',gWin:'Has llevado la marca a la cima.',gWin2:'Ahora, hagámoslo con la tuya.',gAgainW:'Jugar otra vez',gBack:'Seguir viendo la web',ppPrev:'Proyecto anterior',ppNext:'Proyecto siguiente',seeIg:'Ver Instagram',backWork:'Volver a las piezas',prevM:'Anterior',nextM:'Siguiente',nextLbl:'Siguiente',cOpen:'Abrir',cClose:'Cerrar',cView:'Ver',cMail:'Escribir',scroll:'Haz scroll',copied:'¡Copiado!',
       tProfile:'Perfil',bio:'Profesional del branding y la comunicación con experiencia en agencia. Me mueve construir marcas con dirección: posicionamiento claro, coherencia y visión a largo plazo.',lDrive:'Qué me mueve',drive:'Construir marcas con dirección: posicionamiento claro, decisiones con coherencia y visión a largo plazo.',lBrands:'Marcas con las que he trabajado',more:'Y algo más…',iam:'Soy',altPortrait:'Retrato de David Gamonal',
       x1:'Eficaz.',x2:'Adaptable.',x3:'Proactivo.',x4:'Ambicioso.',x5:'Con don de gentes.',
-      tBring:'Qué aporto',b1:'Estrategia',b2:'Creatividad',b3:'Diagnóstico',b4:'Resolución',c1t:'Estrategia y gestión de marca',c1p:'Posicionamiento, identidad y acciones alineadas con los objetivos de negocio.',c2t:'Marketing y análisis',c2p:'Mercado, competencia y datos para decidir con criterio.',c3t:'Comunicación de marca',c3p:'Una voz coherente en cada canal, mercado e idioma.',c4t:'Resolución creativa',c4p:'Ideas que hacen funcionar la estrategia.',
+      tBring:'Qué aporto',tSkills:'Habilidades',s1t:'Estrategia y gestión de marca',s1p:'Posicionamiento, identidad y planificación de acciones.',s2t:'Comunicación y contenidos',s2p:'Mensajes, copywriting y redes sociales.',s3t:'Análisis de datos',s3p:'Mercado, competencia y métricas para tomar decisiones.',s4t:'Herramientas',s4p:'IA, Meta Ads, Trello, CapCut, Canva y Microsoft Office, entre otras.',b1:'Estrategia',b2:'Creatividad',b3:'Diagnóstico',b4:'Resolución',c1t:'Estrategia y gestión de marca',c1p:'Posicionamiento, identidad y acciones alineadas con los objetivos de negocio.',c2t:'Marketing y análisis',c2p:'Mercado, competencia y datos para decidir con criterio.',c3t:'Comunicación de marca',c3p:'Una voz coherente en cada canal, mercado e idioma.',c4t:'Resolución creativa',c4p:'Ideas que hacen funcionar la estrategia.',
       tWork:'Proyectos',lOthers:'Otros proyectos',o1:'Activación de marca del CR-V Full Hybrid: enfoque narrativo y adaptación a digital.',o2:'Enfoque de campaña y claim para un encuentro internacional del sector oleícola.',o3:'Rebranding: análisis de competencia y enfoque estratégico.',o4:'Concepto y naming de una campaña de cultura interna.',workSub:'El detalle, en persona.',kRet:'Reto',kEnf:'Enfoque',kRol:'Mi papel',
       t1:'Comunicación pública',p1r:'Reducir la siniestralidad de los motoristas.',p1e:'Una idea central, anticiparse también es protegerse, en TV, radio y gráfica.',p1m:'Desarrollo conceptual, mensajes y producción.',award:'Premiada en Premis Impacte y Publifestival',seePhotos:'Ver fotos',
       t2:'Posicionamiento',p2r:'Un relato común para restaurantes muy distintos.',p2e:'Singularidad, territorio y experiencia como eje.',p2m:'Concepto editorial, tono y narrativa.',
@@ -723,7 +737,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     en:{skip:'Skip to contact',index:'Index',heroSub:'Branding · Marketing · Communication — Barcelona',claim:'Brand strategy with creative execution.',a1:'Strategic',a2:'Analytical',a3:'Resourceful',a4:'Creative',swipe:'Swipe',howBtn:'How did I build this site?',playQ:'Leaving without playing?',howT:'Thanks to AI, on my own.',play:'Play',tryGame:'Or try my game',gTitle:'Keep the brand on course',gSub:'Dodge what holds a brand back. Collect 10 things that make it grow.',gHowD:'Press space or click to start and rise',gHowT:'Tap the screen to start and rise',gReached:'You reached',gEnd:'You didn’t reach the top this time.',gEnd2:'Together, we can take your brand there.',gTalk:'Contact',gAgain:'Try again',gWin:'You took the brand to the top.',gWin2:'Now let’s do it with yours.',gAgainW:'Play again',gBack:'Keep browsing',ppPrev:'Previous project',ppNext:'Next project',seeIg:'View Instagram',backWork:'Back to the work',prevM:'Previous',nextM:'Next',nextLbl:'Next',cOpen:'Open',cClose:'Close',cView:'View',cMail:'Write',scroll:'Scroll',copied:'Copied!',
       tProfile:'Profile',bio:'Branding and communication professional with agency experience, driven by building brands with direction: clear positioning, consistency and a long-term view.',lDrive:'What drives me',drive:'Building brands with direction: clear positioning, consistent decisions and a long-term vision.',lBrands:"Brands I've worked with",more:'And more…',iam:'I am',altPortrait:'Portrait of David Gamonal',
       x1:'Effective.',x2:'Adaptable.',x3:'Proactive.',x4:'Ambitious.',x5:'A people person.',
-      tBring:'What I bring',b1:'Strategy',b2:'Creativity',b3:'Diagnosis',b4:'Problem-solving',c1t:'Brand strategy and management',c1p:'Positioning, identity and actions aligned with business goals.',c2t:'Marketing and analysis',c2p:'Market, competitors and data to make sound decisions.',c3t:'Brand communication',c3p:'One consistent voice across every channel, market and language.',c4t:'Creative problem-solving',c4p:'Ideas that make the strategy work.',
+      tBring:'What I bring',tSkills:'Skills',s1t:'Brand strategy and management',s1p:'Positioning, identity and action planning.',s2t:'Communication and content',s2p:'Messaging, copywriting and social media.',s3t:'Data analysis',s3p:'Market, competitors and metrics to inform decisions.',s4t:'Tools',s4p:'AI, Meta Ads, Trello, CapCut, Canva and Microsoft Office, among others.',b1:'Strategy',b2:'Creativity',b3:'Diagnosis',b4:'Problem-solving',c1t:'Brand strategy and management',c1p:'Positioning, identity and actions aligned with business goals.',c2t:'Marketing and analysis',c2p:'Market, competitors and data to make sound decisions.',c3t:'Brand communication',c3p:'One consistent voice across every channel, market and language.',c4t:'Creative problem-solving',c4p:'Ideas that make the strategy work.',
       tWork:'Selected work',lOthers:'Other projects',o1:'Brand activation for the CR-V Full Hybrid: narrative approach and digital adaptation.',o2:'Campaign approach and claim for an international olive-oil industry event.',o3:'Rebrand: competitor analysis and strategic approach.',o4:'Concept and naming for an internal culture campaign.',workSub:'The full story, in person.',kRet:'Challenge',kEnf:'Approach',kRol:'My role',
       t1:'Public communication',p1r:'Reduce motorcyclist accidents.',p1e:'One central idea, anticipating is protecting yourself, across TV, radio and print.',p1m:'Concept development, messaging and production.',award:'Awarded at Premis Impacte and Publifestival',seePhotos:'See photos',
       t2:'Positioning',p2r:'One shared story for very different restaurants.',p2e:'Uniqueness, place and experience at the core.',p2m:'Editorial concept, tone and narrative.',
@@ -780,7 +794,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     's-hero':['.red-rule','.meta','.name .ln','.go','.try'],
     's-profile':['.portrait','.title','.bio','.brands .jhead','.more-btn'],
     's-work':['.work-head .title','.work-head .sub','.proj','.others .jhead','.others li'],
-    's-journey':['.title','.jcols > div:nth-child(1) .jhead','.jcols > div:nth-child(1) li','.jcols > div:nth-child(2) .jhead','.jcols > div:nth-child(2) li','.jcols > div:nth-child(3) .jhead','.jcols > div:nth-child(3) li'],
+    's-journey':['.title','#skillsBtn','.jcols > div:nth-child(1) .jhead','.jcols > div:nth-child(1) li','.jcols > div:nth-child(2) .jhead','.jcols > div:nth-child(2) li','.jcols > div:nth-child(3) .jhead','.jcols > div:nth-child(3) li'],
     's-contact':['h2','.lead','.links a','.foot']
   };
   var SPLIT=['#s-profile .title','#s-work .work-head .title','#s-journey .title','#s-contact h2'];
@@ -943,7 +957,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
   function openLayer(id,trigger){ lastFocus=trigger||document.activeElement; var el=document.getElementById(id); el.classList.add('open'); if(trigger) trigger.setAttribute('aria-expanded','true'); setTimeout(function(){var c=el.querySelector('.close'); c&&c.focus()},50); if(id==='lightbox') lbOpen=true; }
   function closeAll(){
     if(document.getElementById('lightbox').classList.contains('open')&&document.getElementById('pp').classList.contains('open')){ document.getElementById('lightbox').classList.remove('open'); lbOpen=false; return; }
-    ['index','extra','lightbox','pp','game'].forEach(function(id){document.getElementById(id).classList.remove('open')}); if(window.gameStop) gameStop();
+    ['index','extra','skills','lightbox','pp','game'].forEach(function(id){document.getElementById(id).classList.remove('open')}); if(window.gameStop) gameStop();
     [].forEach.call(document.querySelectorAll('#ppStage video'),function(v){try{v.pause()}catch(_){}});
     document.getElementById('idxBtn').setAttribute('aria-expanded','false'); document.getElementById('moreBtn').setAttribute('aria-expanded','false');
     lbOpen=false; if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
@@ -957,28 +971,32 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
     window.__hideHow=function(){ set(false); };
   })();
-  (function(){
-    var btn=document.getElementById('moreBtn'), ex=document.getElementById('extra'), t=null, lastPT='mouse';
+  var lastPT='mouse';
+  document.addEventListener('pointerdown',function(e){ lastPT=e.pointerType||'mouse'; },true);
+  function bindPop(bid,eid){
+    var btn=document.getElementById(bid), ex=document.getElementById(eid), t=null;
     function popMode(){ return lastPT!=='touch'&&window.innerWidth>=640; }
     function place(){ var r=btn.getBoundingClientRect(), pad=Math.max(16,Math.min(64,window.innerWidth*.045));
       var left=Math.max(pad,Math.min(r.left,window.innerWidth-pad-320)), w=Math.min(980,window.innerWidth-left-pad);
       ex.style.width=w+'px'; ex.style.left=left+'px'; ex.style.top='auto'; ex.style.bottom=(window.innerHeight-r.top+14)+'px';
       ex.classList.toggle('narrow',w<760);
+      var aw=ex.offsetWidth; if(left+aw>window.innerWidth-pad){ ex.style.left=Math.max(pad,window.innerWidth-pad-aw)+'px'; }
       var h=ex.offsetHeight; if(h>r.top-20){ ex.style.bottom='auto'; ex.style.top=Math.max(12,Math.min(r.bottom+14,window.innerHeight-h-12))+'px'; } }
     function show(){ clearTimeout(t); if(!popMode()) return; ex.classList.add('pop'); place(); ex.classList.add('show'); btn.classList.add('on'); btn.setAttribute('aria-expanded','true'); }
     function hide(){ clearTimeout(t); ex.classList.remove('show'); btn.classList.remove('on'); btn.setAttribute('aria-expanded','false'); }
     function later(){ clearTimeout(t); t=setTimeout(hide,250); }
-    document.addEventListener('pointerdown',function(e){ lastPT=e.pointerType||'mouse'; },true);
     btn.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'){ lastPT='mouse'; show(); } });
     btn.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') later(); });
     ex.addEventListener('pointerenter',function(){ if(ex.classList.contains('show')) clearTimeout(t); });
     ex.addEventListener('pointerleave',function(e){ if(ex.classList.contains('show')&&e.pointerType==='mouse') later(); });
-    btn.onclick=function(){ if(popMode()){ ex.classList.contains('show')?hide():show(); return; } hide(); ex.classList.remove('pop','narrow'); ex.style.cssText=''; openLayer('extra',this); ex.scrollTop=0; };
+    btn.onclick=function(){ if(popMode()){ ex.classList.contains('show')?hide():show(); return; } hide(); ex.classList.remove('pop','narrow'); ex.style.cssText=''; openLayer(eid,this); ex.scrollTop=0; };
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') hide(); });
-    document.addEventListener('click',function(e){ if(ex.classList.contains('show')&&!e.target.closest('#extra,#moreBtn')) hide(); });
+    document.addEventListener('click',function(e){ if(ex.classList.contains('show')&&!e.target.closest('#'+eid+',#'+bid)) hide(); });
     window.addEventListener('resize',function(){ if(ex.classList.contains('show')) place(); });
-    window.__hideMore=hide;
-  })();
+    return hide;
+  }
+  var hideA=bindPop('moreBtn','extra'), hideS=bindPop('skillsBtn','skills');
+  window.__hideMore=function(){ hideA(); hideS(); };
 
 
   // ---------- proyectos: datos ----------
