@@ -110,8 +110,8 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .go{display:inline-flex;align-items:center;gap:12px;font-weight:500;font-size:16px;padding:12px 0;border-bottom:2px solid var(--red)}
 #goLbl{animation:blink 1.6s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.try .tarr{display:inline-block;color:var(--red);margin-left:4px;animation:nudge 2.4s var(--ease) infinite}
-@keyframes nudge{0%,60%,100%{transform:none}75%{transform:translate(3px,-3px)}}
+.try .tarr{display:inline-block;color:var(--red);margin-right:4px;animation:nudge 2.4s var(--ease) infinite}
+@keyframes nudge{0%,60%,100%{transform:none}75%{transform:translateX(4px)}}
 .play-q{display:inline-block;transform-origin:50% 60%;animation:wig 3s ease-in-out infinite}
 @keyframes wig{0%,78%,100%{transform:none}82%{transform:rotate(-4deg)}86%{transform:rotate(4deg)}90%{transform:rotate(-3deg)}94%{transform:rotate(2deg)}97%{transform:rotate(-1deg)}}
 @media (prefers-reduced-motion:reduce){#goLbl,.try .tarr,.play-q{animation:none}}
@@ -542,7 +542,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
         <p class="meta" data-i18n="heroSub">Branding · Marketing · Comunicación — Barcelona</p>
         <h1 class="name" id="heroName" aria-label="David Gamonal"><span class="ln">David</span><span class="ln">Gamonal</span></h1>
         <div class="hero-foot">
-          <div class="go-wrap"><button class="go" type="button" data-go="1"><span id="goLbl">Haz scroll</span></button><button type="button" class="try" data-play><span data-i18n="tryGame">O prueba a jugar</span> <span class="tarr" aria-hidden="true">↗</span></button></div>
+          <div class="go-wrap"><button class="go" type="button" data-go="1"><span id="goLbl">Haz scroll</span></button><button type="button" class="try" data-play><span class="tarr" aria-hidden="true">→</span> <span data-i18n="tryGame">O prueba a jugar</span></button></div>
         </div>
       </div>
     </section>
