@@ -165,7 +165,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
 .extra.open .cards .card{opacity:1;transform:none}
 .extra.open .cards .card:nth-child(1){transition-delay:.3s}.extra.open .cards .card:nth-child(2){transition-delay:.4s}.extra.open .cards .card:nth-child(3){transition-delay:.5s}.extra.open .cards .card:nth-child(4){transition-delay:.6s}
 .extra .close{position:fixed}
-.jtop{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.skills-btn{margin-top:clamp(28px,5vh,56px)}
 #skills.pop{width:min(980px,calc(100vw - 48px))!important}
 .bring{list-style:none;display:flex;flex-wrap:wrap;gap:6px 0;font-size:clamp(34px,5vw,72px);font-weight:600;letter-spacing:-.04em;line-height:1.05}
 .bring li{display:flex;align-items:center;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
@@ -587,7 +587,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     <section class="slide journey" id="s-journey" data-slug="trayectoria" aria-roledescription="slide" aria-label="Trayectoria">
       <span class="ghost" aria-hidden="true">04</span>
       <div class="slide-inner">
-        <div class="jtop"><h2 class="title" data-i18n="tJourney">Trayectoria</h2><button class="more-btn" type="button" id="skillsBtn" aria-expanded="false" aria-controls="skills"><span class="plus" aria-hidden="true">+</span><span data-i18n="tSkills">Habilidades</span></button></div>
+        <h2 class="title" data-i18n="tJourney">Trayectoria</h2>
         <div class="jcols">
           <div>
             <h3 class="jhead" data-i18n="lExp">Experiencia</h3>
@@ -619,6 +619,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
               <li><span data-i18n="lg5">Italiano</span><span data-i18n="basic">Básico</span></li>
             </ul>
             </div></div>
+            <button class="more-btn skills-btn" type="button" id="skillsBtn" aria-expanded="false" aria-controls="skills"><span class="plus" aria-hidden="true">+</span><span data-i18n="tSkills">Habilidades</span></button>
           </div>
         </div>
       </div>
@@ -794,7 +795,7 @@ h2.title{font-size:clamp(34px,4.6vw,64px);font-weight:600;letter-spacing:-.035em
     's-hero':['.red-rule','.meta','.name .ln','.go','.try'],
     's-profile':['.portrait','.title','.bio','.brands .jhead','.more-btn'],
     's-work':['.work-head .title','.work-head .sub','.proj','.others .jhead','.others li'],
-    's-journey':['.title','#skillsBtn','.jcols > div:nth-child(1) .jhead','.jcols > div:nth-child(1) li','.jcols > div:nth-child(2) .jhead','.jcols > div:nth-child(2) li','.jcols > div:nth-child(3) .jhead','.jcols > div:nth-child(3) li'],
+    's-journey':['.title','.jcols > div:nth-child(1) .jhead','.jcols > div:nth-child(1) li','.jcols > div:nth-child(2) .jhead','.jcols > div:nth-child(2) li','.jcols > div:nth-child(3) .jhead','.jcols > div:nth-child(3) li','#skillsBtn'],
     's-contact':['h2','.lead','.links a','.foot']
   };
   var SPLIT=['#s-profile .title','#s-work .work-head .title','#s-journey .title','#s-contact h2'];
